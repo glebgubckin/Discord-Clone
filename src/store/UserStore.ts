@@ -13,7 +13,7 @@ class UserStore {
   }
 
   public user: User = {}
-  public isAuth: boolean = false
+  public isAuth = true
 
   get fullName() {
     return ''

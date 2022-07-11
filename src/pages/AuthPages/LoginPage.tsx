@@ -1,11 +1,11 @@
 import { FC, useState, ChangeEvent, MouseEvent, useContext } from 'react'
-import {Button, GoogleButton, Input} from '@entory/ui'
+import { Button, GoogleButton, Input } from '@entory/ui'
 import styles from './auth.module.scss'
-import setTitle from '../../lib/utils/setTitle';
-import { Context } from '../../main';
-import { observer } from 'mobx-react-lite';
-import { Link, useNavigate } from 'react-router-dom';
-import { emailValidate } from '../../lib/utils/authValidate';
+import { setTitle } from '../../lib/utils'
+import { Context } from '../../main'
+import { observer } from 'mobx-react-lite'
+import { Link, useNavigate } from 'react-router-dom'
+import { emailValidate } from '../../lib/utils/authValidate'
 
 const LoginPage: FC = () => {
 

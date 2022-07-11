@@ -1,0 +1,89 @@
+.dashboard {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.channels {
+  width: 100%;
+  max-width: 100px;
+  height: 100%;
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #232323;
+  border-right: 1px rgb(151, 151, 151) solid;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+    border-radius: 50px;
+    background: rgb(65, 65, 65);
+    margin-bottom: 15px;
+    transition: .2s all linear;
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(93, 93, 93);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--active {
+      border: 2px rgb(43, 208, 43) solid;
+    }
+  }
+
+  &__dot {
+    top: 50%;
+    right: -10px;
+    position: absolute;
+    background: rgb(43, 208, 43);
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    cursor: default;
+  }
+
+  &__divider {
+    margin-bottom: 15px;
+    width: 60px;
+    height: 1px;
+    background: #979797;
+  }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__btn {
+      position: relative;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+
+    &__img {
+      &:hover {
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  
+}

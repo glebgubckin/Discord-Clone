@@ -1,7 +1,7 @@
 import { FC, useState, ChangeEvent, MouseEvent } from 'react'
 import styles from './auth.module.scss'
 import setTitle from '../../lib/utils/setTitle'
-import { emailValidate, passwordValidate } from '../../lib/utils/authValidate'
+import { emailValidate, passwordValidate } from '../../lib/utils'
 import { Button, Input } from '@entory/ui'
 import { Link } from 'react-router-dom'
 
