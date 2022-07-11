@@ -1,0 +1,23 @@
+.auth {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+
+  &__wrapper {
+    width: 50vw;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__footer {
+    opacity: .5;
+  }
+
+  &__side {
+    width: 50vw;
+    height: 100%;
+    background: rgb(212, 234, 247);
+  }
+}
