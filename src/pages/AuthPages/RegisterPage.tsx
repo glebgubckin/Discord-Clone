@@ -2,6 +2,7 @@ import { FC, useState, ChangeEvent, MouseEvent } from 'react'
 import styles from './auth.module.scss'
 import setTitle from '../../lib/utils/setTitle';
 import { Button, Input } from '../../ui'
+import { Link } from 'react-router-dom';
 
 const RegisterPage: FC = () => {
   setTitle('Регистрация')
@@ -29,7 +30,7 @@ const RegisterPage: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.form}>
+      <form className={styles.form}>
         <h1 className={styles.form__title}>Регистрация</h1>
         <div className={styles.form__input__block}>
           <span className={styles.form__subtitle}>Эл. почта</span>
@@ -43,8 +44,9 @@ const RegisterPage: FC = () => {
           <span className={styles.form__subtitle}>Подтвердите пароль</span>
           <Input type="password" value={confirmedPassword} handleChange={handleConfirmedPasswordChange}/>
         </div>
+        <Link style={{marginBottom: '0'}} className={styles.form__link} to='/login'>Войти</Link>
         <Button onClick={signUpHandler}>Зарегистрироваться</Button>
-      </div>
+      </form>
     </div>
   )
 }

@@ -1,7 +1,10 @@
-import { FC, useState, ChangeEvent, MouseEvent } from 'react'
+import { FC, useState, ChangeEvent, MouseEvent, useContext } from 'react'
 import {Button, GoogleButton, Input} from '../../ui'
 import styles from './auth.module.scss'
 import setTitle from '../../lib/utils/setTitle';
+import { Context } from '../../main';
+import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
 const LoginPage: FC = () => {
 
@@ -9,6 +12,7 @@ const LoginPage: FC = () => {
 
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const { user } = useContext(Context)
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -20,7 +24,8 @@ const LoginPage: FC = () => {
 
   const signInHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    console.log({email, password})
+    user.setAuth()
+    console.log(user.isAuth);
   }
 
   const signInWithGoogleHandler = (e: MouseEvent<HTMLDivElement>) => {
@@ -30,22 +35,23 @@ const LoginPage: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.form}>
-      <h1 className={styles.form__title}>Войти</h1>
-      <div className={styles.form__input__block}>
-        <span className={styles.form__subtitle}>Эл. почта</span>
-        <Input type="text" value={email} handleChange={handleEmailChange}/>
-      </div>
-      <div className={styles.form__input__block}>
-        <span className={styles.form__subtitle}>Пароль</span>
-        <Input type="password" value={password} handleChange={handlePasswordChange}/>
-      </div>
-      <a className={styles.form__link} href="#">Забыли пароль</a>
-      <Button onClick={signInHandler}>Войти</Button>
-      <GoogleButton onClick={signInWithGoogleHandler} />
-    </div>
+      <form className={styles.form}>
+        <h1 className={styles.form__title}>Войти</h1>
+        <div className={styles.form__input__block}>
+          <span className={styles.form__subtitle}>Эл. почта</span>
+          <Input type="text" value={email} handleChange={handleEmailChange}/>
+        </div>
+        <div className={styles.form__input__block}>
+          <span className={styles.form__subtitle}>Пароль</span>
+          <Input type="password" value={password} handleChange={handlePasswordChange}/>
+        </div>
+        <Link className={styles.form__link} to="/forgot">Забыли пароль</Link>
+        <Link style={{marginBottom: '0'}} className={styles.form__link} to='/register'>Зарегистрироваться</Link>
+        <Button onClick={signInHandler}>Войти</Button>
+        <GoogleButton onClick={signInWithGoogleHandler} />
+      </form>
     </div>
   )
 }
 
-export default LoginPage
+export default observer(LoginPage)

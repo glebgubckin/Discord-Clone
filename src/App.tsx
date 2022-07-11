@@ -1,19 +1,21 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useContext, useEffect, useState } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import api from './lib/api/index'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
+import { Context } from './main'
+import { observer } from 'mobx-react-lite'
 
 const App: FC = () => {
 
-  const [isAuth, setIsAuth] = useState<boolean>(false)
+  const { user } = useContext(Context)
 
   return (
     <Router>
       {
-        !isAuth && <AuthLayout />
+        !user.isAuth && <AuthLayout />
       }
     </Router>
   )
 }
 
-export default App
+export default observer(App)

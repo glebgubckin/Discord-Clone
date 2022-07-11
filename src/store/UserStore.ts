@@ -10,6 +10,7 @@ class UserStore {
   }
 
   public user: User = {}
+  public isAuth: boolean = false
 
   get fullName() {
     return ''
@@ -17,6 +18,10 @@ class UserStore {
 
   public setUser(user: User) {
     this.user = {...user}
+  }
+
+  public setAuth() {
+    this.isAuth = true
   }
 }
 
