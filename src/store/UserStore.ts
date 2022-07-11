@@ -1,11 +1,14 @@
-import { makeObservable, observable, computed } from "mobx"
+import { makeObservable, observable, computed, action } from "mobx"
 import User from "../types/store/UserStoreTypes"
 
 class UserStore {
   constructor() {
     makeObservable(this, {
       user: observable,
-      fullName: computed
+      isAuth: observable,
+      fullName: computed,
+      setAuth: action,
+      setUser: action
     })
   }
 
@@ -21,7 +24,7 @@ class UserStore {
   }
 
   public setAuth() {
-    this.isAuth = true
+    this.isAuth = !this.isAuth
   }
 }
 

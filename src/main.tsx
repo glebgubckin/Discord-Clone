@@ -6,6 +6,7 @@ import './index.scss'
 
 export const Context = React.createContext({user})
 
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Context.Provider value={{user}}>

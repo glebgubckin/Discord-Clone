@@ -1,10 +1,11 @@
 import { FC, useState, ChangeEvent, MouseEvent, useContext } from 'react'
-import {Button, GoogleButton, Input} from '../../ui'
+import {Button, GoogleButton, Input} from '@entory/ui'
 import styles from './auth.module.scss'
 import setTitle from '../../lib/utils/setTitle';
 import { Context } from '../../main';
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { emailValidate } from '../../lib/utils/authValidate';
 
 const LoginPage: FC = () => {
 
@@ -13,6 +14,7 @@ const LoginPage: FC = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const { user } = useContext(Context)
+  const navigate = useNavigate()
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -22,10 +24,17 @@ const LoginPage: FC = () => {
     setPassword(e.target.value)
   }
 
+  const formValidate = (): boolean => {
+    return password.length > 7
+        && emailValidate(email) 
+        ? false 
+        : true
+  }
+
   const signInHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     user.setAuth()
-    console.log(user.isAuth);
+    navigate('/dashboard', {replace: true})
   }
 
   const signInWithGoogleHandler = (e: MouseEvent<HTMLDivElement>) => {
@@ -47,7 +56,7 @@ const LoginPage: FC = () => {
         </div>
         <Link className={styles.form__link} to="/forgot">Забыли пароль</Link>
         <Link style={{marginBottom: '0'}} className={styles.form__link} to='/register'>Зарегистрироваться</Link>
-        <Button onClick={signInHandler}>Войти</Button>
+        <Button disabled={formValidate()} onClick={signInHandler}>Войти</Button>
         <GoogleButton onClick={signInWithGoogleHandler} />
       </form>
     </div>
