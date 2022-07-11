@@ -3,6 +3,7 @@ type User = {
   email?: string,
   first_name?: string,
   last_email?: string,
+  jobTitle?: string,
   verified?: boolean
 }
 

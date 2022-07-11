@@ -7,14 +7,14 @@
 
 .channels {
   width: 100%;
-  max-width: 100px;
+  max-width: 105px;
   height: 100%;
   padding: 30px 0;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   background: #232323;
-  border-right: 1px rgb(151, 151, 151) solid;
+  border-right: 1px #33363F solid;
 
   &__wrapper {
     display: flex;
@@ -64,7 +64,7 @@
     margin-bottom: 15px;
     width: 60px;
     height: 1px;
-    background: #979797;
+    background: #33363F;
   }
 
   &__settings {
@@ -73,14 +73,17 @@
     align-items: center;
 
     &__btn {
+      width: 24px;
+      height: 24px;
       position: relative;
       margin-bottom: 15px;
       cursor: pointer;
     }
 
     &__img {
+      position: absolute;
       &:hover {
-        padding-bottom: 10px;
+        right: -5px;
       }
     }
   }

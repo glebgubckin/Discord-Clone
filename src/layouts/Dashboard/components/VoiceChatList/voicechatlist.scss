@@ -1,0 +1,39 @@
+.voiceChatlist {
+  margin-top: 20px;
+
+  &__controllers {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 14px;
+    color: #979797;
+    opacity: .8;
+  }
+
+  &__add {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: .1s all linear;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__subtitle {
+    margin-left: 8px;
+  }
+}

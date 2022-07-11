@@ -16,7 +16,11 @@ class UserStore {
   public isAuth = true
 
   get fullName() {
-    return ''
+    return 'Глеб Губкин'
+  }
+
+  get jobTitle() {
+    return 'Frontend разработчик'
   }
 
   public setUser(user: User) {
