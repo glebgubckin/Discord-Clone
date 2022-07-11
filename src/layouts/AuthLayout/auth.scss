@@ -21,3 +21,17 @@
     background: rgb(212, 234, 247);
   }
 }
+
+@media screen and (max-width: 650px) {
+  .auth {
+    justify-content: center;
+
+    &__wrapper {
+      align-items: center;
+    }
+
+    &__side {
+      display: none;
+    }
+  }
+}

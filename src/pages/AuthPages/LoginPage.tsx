@@ -1,8 +1,11 @@
 import { FC, useState, ChangeEvent, MouseEvent } from 'react'
-import {Button, GoogleButton, Input} from '../../../ui'
-import styles from './login.module.scss'
+import {Button, GoogleButton, Input} from '../../ui'
+import styles from './auth.module.scss'
+import setTitle from '../../lib/utils/setTitle';
 
 const LoginPage: FC = () => {
+
+  setTitle('Войти')
 
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -28,7 +31,7 @@ const LoginPage: FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.form}>
-      <h1 className={styles.form__title}>С возвращением</h1>
+      <h1 className={styles.form__title}>Войти</h1>
       <div className={styles.form__input__block}>
         <span className={styles.form__subtitle}>Эл. почта</span>
         <Input type="text" value={email} handleChange={handleEmailChange}/>

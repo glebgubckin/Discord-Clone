@@ -1,5 +1,5 @@
 import { PageType } from "../types/pages"
-import LoginPage from './AuthPages/LoginPage/LoginPage'
+import LoginPage from './AuthPages/LoginPage'
 import RegisterPage from "./AuthPages/RegisterPage"
 
 const authRoutes: PageType[] = [
