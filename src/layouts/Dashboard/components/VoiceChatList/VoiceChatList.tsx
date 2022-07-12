@@ -2,19 +2,18 @@ import { FC, useState, useEffect, MouseEvent, useContext } from 'react';
 import icons from '@entory/ui'
 import './voicechatlist.scss'
 import { observer } from 'mobx-react-lite'
-import { Context } from '../../../../main';
+import { VoiceChat } from 'types/store/ChatStoreTypes';
+import { Context } from '../../../../main'
+import Loader from '../../../../components/Loader/Loader'
 
-type VoiceChatList = {
-  id: number,
-  title: string
-}
 
 const VoiceChatList: FC = () => {
 
-  const { chat } = useContext(Context)
+  const { chat, channel } = useContext(Context)
 
-  const [voiceChatList, voiceSetChatList] = useState<VoiceChatList[]>([])
+  const [voiceChatList, voiceSetChatList] = useState<VoiceChat[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const currentChannel = channel.currentChannel.id
 
   useEffect(() => {
     setLoading(true)
@@ -36,15 +35,18 @@ const VoiceChatList: FC = () => {
         </button>
       </div>
       {
-        voiceChatList.map(chat => {
+        loading
+        ? <Loader />
+        : voiceChatList.filter(ch => ch.channel_id === currentChannel).map(ch => {
           return (
             <div 
-              key={chat.id} 
+              key={ch.id} 
               className="voiceChatlist__item"
-              onClick={(e: MouseEvent<HTMLDivElement>) => selectChat(e, chat.id)}
+              onClick={(e: MouseEvent<HTMLDivElement>) => selectChat(e, ch.id)}
             >
-              <img src={icons.volume} alt="" />
-              <p className="voiceChatlist__subtitle">{chat.title}</p>
+              {/* Update @entory/ui for image below */}
+              {/* <img src={icons.volume} alt="" /> */}
+              <p className="voiceChatlist__subtitle">{ch.title}</p>
             </div>
           )
         })

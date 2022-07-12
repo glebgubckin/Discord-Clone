@@ -14,18 +14,22 @@ class ChatStore {
   }
 
   public chats: Chat[] = [
-    { id: 0, title: 'Общее' },
-    { id: 1, title: 'Приложение' },
-    { id: 2, title: 'Маркетинг' }
+    { id: 456, channel_id: 1, title: 'Общее' },
+    { id: 795, channel_id: 1, title: 'Приложение' },
+    { id: 124, channel_id: 2, title: 'Маркетинг' }
   ]
 
   public voiceChats: VoiceChat[] = [
-    { id: 0, title: 'Основной' },
-    { id: 1, title: 'Деловой' },
-    { id: 2, title: 'Формальный' }
+    { id: 145, channel_id: 1, title: 'Основной' },
+    { id: 258, channel_id: 2, title: 'Деловой' },
+    { id: 875, channel_id: 4, title: 'Формальный' }
   ]
 
-  public currentChat = 0
+  public currentChat: Chat = {
+    id: 0,
+    channel_id: 0,
+    title: ''
+  }
 
   addChat(chat: Chat): void {
     this.chats.push(chat)
@@ -35,8 +39,8 @@ class ChatStore {
     this.voiceChats.push(chat)
   }
 
-  setCurrentChat(id: number): void {
-    this.currentChat = id
+  setCurrentChat(chat_id: number): void {
+    this.currentChat = this.chats.filter(chat => chat.id === chat_id)[0] || this.chats[0].id
   }
 
 }

@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 import icons from '@entory/ui';
 import Hashtag from '../../components/Hashtag/Hashtag';
 import Message from './components/Message';
+import setTitle from '../../lib/utils/setTitle';
 
 const ChatPage: FC = () => {
 
@@ -15,6 +16,8 @@ const ChatPage: FC = () => {
   const { project_id , chat_id} = useParams()
   channel.setCurrentChannel(Number(project_id))
   chat.setCurrentChat(Number(chat_id))
+
+  setTitle(chat.currentChat.title || 'Entory')
 
   return (
     <div className="chatpage">

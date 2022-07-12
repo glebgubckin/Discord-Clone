@@ -12,20 +12,25 @@ class ChannelStore {
   }
 
   public channels: Channel[] = [
-    { id: 0, title: '🤖' },
-    { id: 1, title: '💎' },
-    { id: 2, title: '🍓' },
-    { id: 3, title: '🗿' }
+    { id: 1, title: '🤖' },
+    { id: 2, title: '💎' },
+    { id: 3, title: '🍓' },
+    { id: 4, title: '🌏' },
+    { id: 5, title: '🏉' },
+    { id: 6, title: '🏆' }
   ]
 
-  public currentChannel = 0
+  public currentChannel: Channel = {
+    id: 0,
+    title: ''
+  }
 
   addChannel(channel: Channel): void {
     this.channels.push(channel)
   }
 
   setCurrentChannel(id: number): void {
-    this.currentChannel = id
+    this.currentChannel = this.channels.filter(channel => channel.id === id)[0] || this.channels[0].id
   }
 
 }

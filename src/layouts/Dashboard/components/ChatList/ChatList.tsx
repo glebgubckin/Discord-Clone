@@ -1,24 +1,20 @@
 import { FC, useState, MouseEvent, useContext, useEffect } from 'react';
 import icons from '@entory/ui'
 import './chatlist.scss'
-import Hashtag from '../../../../components/Hashtag/Hashtag';
+import Hashtag from '../../../../components/Hashtag/Hashtag'
 import { observer } from 'mobx-react-lite'
-import { Context } from '../../../../main';
-import Loader from '../../../../components/Loader/Loader';
-import { useNavigate } from 'react-router-dom';
-
-type ChatList = {
-  id: number,
-  title: string
-}
+import { Context } from '../../../../main'
+import { Chat } from 'types/store/ChatStoreTypes';
+import Loader from '../../../../components/Loader/Loader'
+import { useNavigate } from 'react-router-dom'
 
 const ChatList: FC = () => {
 
   const { chat, channel } = useContext(Context)
-  const currentChannel = channel.currentChannel
+  const currentChannel = channel.currentChannel.id
   const navigate = useNavigate()
 
-  const [chatList, setChatList] = useState<ChatList[]>([])
+  const [chatList, setChatList] = useState<Chat[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
@@ -43,8 +39,8 @@ const ChatList: FC = () => {
       {
         loading
         ? <Loader />
-        : chatList.map(ch => {
-          const currentChat = ch.id === chat.currentChat
+        : chatList.filter(ch => ch.channel_id === currentChannel).map(ch => {
+          const currentChat = ch.id === chat.currentChat.id
           return (
             <div 
               key={ch.id} 

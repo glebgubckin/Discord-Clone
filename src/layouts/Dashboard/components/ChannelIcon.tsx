@@ -11,14 +11,17 @@ type ChannelIconProps = {
 
 const ChannelIcon: FC<ChannelIconProps> = ({id, title}) => {
 
-  const { channel } = useContext(Context)
+  const { channel, chat } = useContext(Context)
 
   const navigate = useNavigate()
-  const currentChannel = id === channel.currentChannel
+  const currentChannel = id === channel.currentChannel.id
+  const currentChat = chat.chats.filter(chat => {
+    return chat.channel_id === id
+  })[0]?.id
 
   const setChannel = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    navigate(`/project/${id}/chat/0`, { replace: true })
+    navigate(`/project/${id}/chat/${currentChat || 0}`, { replace: true })
   }
 
   return (
