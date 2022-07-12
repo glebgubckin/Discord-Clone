@@ -1,5 +1,65 @@
 .chatpage {
+  position: relative;
+  padding: 25px;
   width: calc(100vw - 506px);
   height: 100%;
   background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px #33363F solid;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    & p {
+      margin-top: -4px;
+      margin-left: 5px;
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    padding: 20px;
+    background: #33363F;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__input {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    caret-color: #fff;
+  }
+
+  &__sendBtn {
+    padding: 10px 15px;
+    background: #1F4140;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1DB686;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+  }
 }
