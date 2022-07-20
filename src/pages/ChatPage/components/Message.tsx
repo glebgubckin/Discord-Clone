@@ -1,15 +1,22 @@
 import { FC } from 'react'
+import profile from '../../../assets/images/profile.jpg'
 import './message.scss'
+import ChatMessageType from "../../../types/pages/ChatMessageType";
+import MessageText from "../../../components/MessageText/MessageText";
 
-const Message: FC = () => {
+const Message: FC<ChatMessageType> = ({id, author, text, img, timeStamp}) => {
   return (
     <div className="message">
-      <h1>Имя</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Porro natus blanditiis unde dolore iure, quod ipsum, assumenda 
-        deleniti harum magnam neque dolorem nesciunt inventore tenetur nam 
-        esse quae temporibus ut.
-      </p>
+      <img className="message__img" src={img || profile} alt="profile"/>
+      <div className="message__block">
+        <div className="message__header">
+          <span className="message__title">{ author}</span>
+          <span className="message__time">| {timeStamp || '5 hours ago'}</span>
+        </div>
+        <div className="message__wrapper">
+          <MessageText text={text} />
+        </div>
+      </div>
     </div>
   )
 }

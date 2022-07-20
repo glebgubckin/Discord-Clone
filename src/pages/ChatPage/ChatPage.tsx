@@ -8,16 +8,29 @@ import icons from '@entory/ui';
 import Hashtag from '../../components/Hashtag/Hashtag';
 import Message from './components/Message';
 import setTitle from '../../lib/utils/setTitle';
+import ChatMessageType from "../../types/pages/ChatMessageType";
 
 const ChatPage: FC = () => {
 
   const [message, setMessage] = useState<string>("")
-  const { channel, chat } = useContext(Context)
+  const { channel, chat, user } = useContext(Context)
   const { project_id , chat_id} = useParams()
   channel.setCurrentChannel(Number(project_id))
   chat.setCurrentChat(Number(chat_id))
 
   setTitle(chat.currentChat.title || 'Entory')
+
+  const createMessage = (e: any) => {
+    e.preventDefault()
+    const newMessage: ChatMessageType = {
+      id: 123234,
+      author: user.fullName,
+      text: message,
+      timeStamp: '123'
+    }
+    chat.addMessage(newMessage)
+    setMessage('')
+  }
 
   return (
     <div className="chatpage">
@@ -33,20 +46,19 @@ const ChatPage: FC = () => {
         </div>
       </div>
       <div className="chat">
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+        {
+          chat.messages.map(message => <Message key={message.id} id={message.id} author={message.author} text={message.text} />)
+        }
       </div>
       <div className="chatpage__textarea">
         <>
           <input
             className="chatpage__input"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                createMessage(e)
+              }
+            }}
             value={message}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
             placeholder="Напишите сообщение..."
@@ -55,7 +67,7 @@ const ChatPage: FC = () => {
 
           </div>
         </>
-        <button className="chatpage__sendBtn">Отправить</button>
+        <button disabled={!message.length} onClick={(e: any) => createMessage(e)} className="chatpage__sendBtn">Отправить</button>
       </div>
     </div>
   )

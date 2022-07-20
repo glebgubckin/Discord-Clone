@@ -1,4 +1,4 @@
-import { FC, useContext, MouseEvent } from 'react'
+import { FC, useContext } from 'react'
 import icons from '@entory/ui'
 import Divider from '../../../../components/Divider/Divider'
 import profileIcon from '../../../../assets/images/profile.jpg'

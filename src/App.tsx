@@ -1,6 +1,5 @@
-import { FC, useContext, useEffect } from 'react'
+import { FC, useContext } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import api from './lib/api/index'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
 import { Context } from './main'
 import { observer } from 'mobx-react-lite'

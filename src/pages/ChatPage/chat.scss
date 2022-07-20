@@ -1,7 +1,8 @@
 .chat {
   margin-top: 60px;
   margin-bottom: 10px;
-  overflow-x: none;
+  display: flex;
+  flex-direction: column;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {

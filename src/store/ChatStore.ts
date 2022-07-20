@@ -1,5 +1,6 @@
 import { makeObservable, observable, action } from "mobx"
-import {Chat, VoiceChat} from "../types/store/ChatStoreTypes"
+import { Chat, VoiceChat } from "../types/store/ChatStoreTypes"
+import ChatMessageType from "../types/pages/ChatMessageType";
 
 class ChatStore {
   constructor() {
@@ -7,8 +8,10 @@ class ChatStore {
       chats: observable,
       voiceChats: observable,
       currentChat: observable,
+      messages: observable,
       addChat: action,
       addVoiceChat: action,
+      addMessage: action,
       setCurrentChat: action,
     })
   }
@@ -25,6 +28,12 @@ class ChatStore {
     { id: 875, channel_id: 4, title: 'Формальный' }
   ]
 
+  public messages: ChatMessageType[] = [
+    { id: 543785, author: "Глеб Губкин", text: "@mental Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах." },
+    { id: 412759, author: "Глеб Губкин", text: "Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах." },
+    { id: 321457, author: "Глеб Губкин", text: "Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах." },
+  ]
+
   public currentChat: Chat = {
     id: 0,
     channel_id: 0,
@@ -32,11 +41,15 @@ class ChatStore {
   }
 
   addChat(chat: Chat): void {
-    this.chats.push(chat)
+    this.chats = [...this.chats, chat]
   }
 
   addVoiceChat(chat: VoiceChat): void {
-    this.voiceChats.push(chat)
+    this.voiceChats = [...this.voiceChats, chat]
+  }
+
+  addMessage(message: ChatMessageType): void {
+    this.messages = [...this.messages, message]
   }
 
   setCurrentChat(chat_id: number): void {

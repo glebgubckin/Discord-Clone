@@ -12,7 +12,10 @@ class UserStore {
     })
   }
 
-  public user: User = {}
+  public user: User = {
+    first_name: "Глеб",
+    last_name: "Губкин"
+  }
   public isAuth = true
 
   get fullName() {
