@@ -20,9 +20,23 @@
   }
 
   &__member {
+    position: relative;
     color: rgb(43, 208, 43);
     font-weight: 600;
     text-decoration: none;
+
+    &__info {
+      padding: 8px;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 300px;
+      height: auto;
+      background: #fff;
+      color: #000;
+      z-index: 10000;
+      border-radius: 5px;
+    }
   }
 
 }

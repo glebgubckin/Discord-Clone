@@ -4,7 +4,6 @@ import './chatpage.scss'
 import { Context } from '../../main';
 import { useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import icons from '@entory/ui';
 import Hashtag from '../../components/Hashtag/Hashtag';
 import Message from './components/Message';
 import setTitle from '../../lib/utils/setTitle';
@@ -39,11 +38,6 @@ const ChatPage: FC = () => {
           <Hashtag color="#fff" />
           <p>{chat.chats[0].title}</p>
         </span>
-        <div className="chatpage__controls">
-          <button className="chatpage__controls__btn">
-            <img src={icons.search} alt="search" />
-          </button>
-        </div>
       </div>
       <div className="chat">
         {
