@@ -2,9 +2,13 @@
 Веб приложение для общения в каналах
 
 **Установка**
+
+***Для корректной работы нужно установить [@slack/ui](https://github.com/glebgubckin/-slack-ui)***
+
 1. git clone https://github.com/glebgubckin/slack.git
 2. cd slack
 3. yarn
-4. yarn dev Или yarn build && yarn preview
-5. Запустить тесты - yarn test, UI для тестов - yarn test:ui
-6. Запуск ESLint - yarn lint
+4. yarn link @slack/ui
+5. yarn dev Или yarn build && yarn preview
+6. Запустить тесты - yarn test, UI для тестов - yarn test:ui
+7. Запуск ESLint - yarn lint
