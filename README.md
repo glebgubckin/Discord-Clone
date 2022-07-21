@@ -1,10 +1,17 @@
 # Slack
 Веб приложение для общения в каналах
 
-**Установка**
+### Использованы сделующие технологии:
+* React + TypeScript
+* Mobx State Manager
+* Scss для стилей
+* Vite - сборка проекта
+* Vitest - тестирование приложения
+* ESlint
 
-***Для корректной работы нужно установить [@slack/ui](https://github.com/glebgubckin/-slack-ui)***
+**Для корректной работы нужно установить [@slack/ui](https://github.com/glebgubckin/-slack-ui)**
 
+### Установка
 1. git clone https://github.com/glebgubckin/slack.git
 2. cd slack
 3. yarn
