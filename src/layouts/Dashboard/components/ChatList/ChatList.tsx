@@ -1,5 +1,5 @@
 import { FC, useState, MouseEvent, useContext, useEffect } from 'react';
-import icons from '@entory/ui'
+import icons from '@slack/ui'
 import './chatlist.scss'
 import Hashtag from '../../../../components/Hashtag/Hashtag'
 import { observer } from 'mobx-react-lite'

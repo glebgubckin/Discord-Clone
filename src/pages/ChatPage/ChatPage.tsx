@@ -1,4 +1,4 @@
-import { FC, useContext, useState, ChangeEvent } from 'react';
+import { FC, useContext, useState, ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
 import './chat.scss'
 import './chatpage.scss'
 import { Context } from '../../main';
@@ -17,12 +17,13 @@ const ChatPage: FC = () => {
   channel.setCurrentChannel(Number(project_id))
   chat.setCurrentChat(Number(chat_id))
 
-  setTitle(chat.currentChat.title || 'Entory')
+  setTitle(chat.currentChat.title || 'Slack')
 
-  const createMessage = (e: any) => {
+  const createMessage = (e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault()
     const newMessage: ChatMessageType = {
       id: 123234,
+      chat_id: Number(chat_id),
       author: user.fullName,
       text: message,
       timeStamp: '123'
@@ -41,14 +42,14 @@ const ChatPage: FC = () => {
       </div>
       <div className="chat">
         {
-          chat.messages.map(message => <Message key={message.id} id={message.id} author={message.author} text={message.text} />)
+          chat.messages.filter(message => message.chat_id === Number(chat_id)).map(message => <Message key={message.id} id={message.id} chat_id={message.chat_id} author={message.author} text={message.text} />)
         }
       </div>
       <div className="chatpage__textarea">
         <>
           <input
             className="chatpage__input"
-            onKeyDown={(e) => {
+            onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
               if (e.key === 'Enter') {
                 createMessage(e)
               }
@@ -61,7 +62,7 @@ const ChatPage: FC = () => {
 
           </div>
         </>
-        <button disabled={!message.length} onClick={(e: any) => createMessage(e)} className="chatpage__sendBtn">Отправить</button>
+        <button disabled={!message.length} onClick={(e: MouseEvent<HTMLButtonElement>) => createMessage(e)} className="chatpage__sendBtn">Отправить</button>
       </div>
     </div>
   )

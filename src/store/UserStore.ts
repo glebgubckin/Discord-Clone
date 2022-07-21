@@ -8,7 +8,9 @@ class UserStore {
       isAuth: observable,
       fullName: computed,
       setAuth: action,
-      setUser: action
+      setUser: action,
+      login: action,
+      register: action,
     })
   }
 
@@ -16,10 +18,10 @@ class UserStore {
     first_name: "Глеб",
     last_name: "Губкин"
   }
-  public isAuth = true
+  public isAuth = false
 
   get fullName() {
-    return 'Глеб Губкин'
+    return `${this.user.first_name} ${this.user.last_name}`
   }
 
   get jobTitle() {
@@ -30,8 +32,16 @@ class UserStore {
     this.user = {...user}
   }
 
-  public setAuth() {
-    this.isAuth = !this.isAuth
+  public setAuth(auth: boolean) {
+    this.isAuth = auth
+  }
+
+  public login(email: string, password: string) {
+    return email === 'admin@admin.ru' && password === '12345678'
+  }
+
+  public register(email: string, password: string, confirmedPassword: string) {
+    return email && password && confirmedPassword
   }
 }
 

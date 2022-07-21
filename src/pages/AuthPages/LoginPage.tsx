@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent, MouseEvent, useContext } from 'react'
-import { Button, GoogleButton, Input } from '@entory/ui'
+import { Button, GoogleButton, Input } from '@slack/ui'
 import styles from './auth.module.scss'
 import { setTitle } from '../../lib/utils'
 import { Context } from '../../main'
@@ -13,7 +13,7 @@ const LoginPage: FC = () => {
 
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-  const { user } = useContext(Context)
+  const { user, channel, chat } = useContext(Context)
   const navigate = useNavigate()
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,16 +25,19 @@ const LoginPage: FC = () => {
   }
 
   const formValidate = (): boolean => {
-    return password.length > 7
-        && emailValidate(email) 
-        ? false 
-        : true
+    return !(password.length > 7
+      && emailValidate(email))
   }
 
   const signInHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    user.setAuth()
-    navigate('/dashboard', {replace: true})
+    const login = user.login(email, password)
+    if (login) {
+      user.setAuth(true)
+      navigate(`/project/${channel.channels[0].id}/chat/${chat.chats.filter(chat => chat.channel_id === channel.channels[0].id)[0].id}`, {replace: true})
+    } else {
+      alert('Неправильный логин или пароль')
+    }
   }
 
   const signInWithGoogleHandler = (e: MouseEvent<HTMLDivElement>) => {

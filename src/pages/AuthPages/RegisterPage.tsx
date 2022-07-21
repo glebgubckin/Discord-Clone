@@ -1,9 +1,10 @@
-import { FC, useState, ChangeEvent, MouseEvent } from 'react'
+import {FC, useState, ChangeEvent, MouseEvent, useContext} from 'react';
 import styles from './auth.module.scss'
 import setTitle from '../../lib/utils/setTitle'
 import { emailValidate, passwordValidate } from '../../lib/utils'
-import { Button, Input } from '@entory/ui'
-import { Link } from 'react-router-dom'
+import { Button, Input } from '@slack/ui'
+import {Link, useNavigate} from 'react-router-dom'
+import {Context} from "../../main";
 
 const RegisterPage: FC = () => {
   setTitle('Регистрация')
@@ -11,6 +12,8 @@ const RegisterPage: FC = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [confirmedPassword, setConfirmedPassword] = useState<string>("")
+  const navigate = useNavigate()
+  const { user, channel, chat } = useContext(Context)
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -25,15 +28,17 @@ const RegisterPage: FC = () => {
   }
 
   const formValidate = (): boolean => {
-    return passwordValidate(password, confirmedPassword) 
-        && emailValidate(email) 
-        ? false 
-        : true
+    return !(passwordValidate(password, confirmedPassword)
+      && emailValidate(email))
   }
 
   const signUpHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    console.log({email, password})
+    const register = user.register(email, password, confirmedPassword)
+    if (register) {
+      user.setAuth(true)
+      navigate(`/project/${channel.channels[0].id}/chat/${chat.chats.filter(chat => chat.channel_id === channel.channels[0].id)}`, {replace: true})
+    }
   }
 
   return (

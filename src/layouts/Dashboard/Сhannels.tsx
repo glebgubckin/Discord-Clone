@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom'
-import icons from '@entory/ui'
+import icons from '@slack/ui'
 import ChannelIcon from './components/ChannelIcon'
 import Channel from 'types/store/ChannelStoreTypes';
 import { Context } from '../../main';

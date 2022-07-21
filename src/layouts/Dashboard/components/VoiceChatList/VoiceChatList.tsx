@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, MouseEvent, useContext } from 'react';
-import icons from '@entory/ui'
+import icons from '@slack/ui'
 import './voicechatlist.scss'
 import { observer } from 'mobx-react-lite'
 import { VoiceChat } from 'types/store/ChatStoreTypes';
@@ -44,7 +44,7 @@ const VoiceChatList: FC = () => {
               className="voiceChatlist__item"
               onClick={(e: MouseEvent<HTMLDivElement>) => selectChat(e, ch.id)}
             >
-              {/* Update @entory/ui for image below */}
+              {/* Update @slack/ui for image below */}
               {/* <img src={icons.volume} alt="" /> */}
               <p className="voiceChatlist__subtitle">{ch.title}</p>
             </div>

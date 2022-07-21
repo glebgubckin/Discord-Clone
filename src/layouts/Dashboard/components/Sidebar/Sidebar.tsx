@@ -1,5 +1,5 @@
 import { FC, useContext } from 'react'
-import icons from '@entory/ui'
+import icons from '@slack/ui'
 import Divider from '../../../../components/Divider/Divider'
 import profileIcon from '../../../../assets/images/profile.jpg'
 import { Context } from '../../../../main'

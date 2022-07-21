@@ -5,7 +5,7 @@ const MessageText: FC<{text: string}> = ({text}) => {
   return (
     <p>
       {
-        text.split(' ').map((word, index) => {
+        text.split(' ').map(word => {
           if (word[0] === '@') {
 
             const [info, setInfo] = useState<boolean>(false)
