@@ -9,16 +9,15 @@
 * Vitest - тестирование приложения
 * ESlint
 
-**Для корректной работы нужно установить [@slack/ui](https://github.com/glebgubckin/-slack-ui)**
-
 ### Установка
 1. git clone https://github.com/glebgubckin/slack.git
 2. cd slack
-3. yarn
-4. yarn link @slack/ui
-5. yarn dev Или yarn build && yarn preview
-6. Запустить тесты - yarn test, UI для тестов - yarn test:ui
-7. Запуск ESLint - yarn lint
+3. cd src/lib/ui && yarn link && cd ../../..
+4. yarn
+5. yarn link @slack/ui
+6. yarn dev или yarn build && yarn preview
+7. Запустить тесты - yarn test, UI для тестов - yarn test:ui
+8. Запуск ESLint - yarn lint
 
 ### Данные для входа
 * Логин - admin@admin.ru
