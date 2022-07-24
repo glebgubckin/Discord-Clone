@@ -2,7 +2,7 @@
 Веб приложение для общения в каналах
 
 ## Демо
-slack-pi.vercel.app
+[Demo](slack-pi.vercel.app)
 
 ### Использованы сделующие технологии:
 * React + TypeScript
